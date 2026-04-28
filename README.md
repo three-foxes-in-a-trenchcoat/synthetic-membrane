@@ -90,8 +90,44 @@ membrane-server  # Runs as MCP server over stdio
 cd mvp
 pip install pytest pytest-asyncio
 PYTHONPATH=src pytest tests/ -v
-# 8/8 passing
+# 41/41 passing — coordination, swarm lifecycle, event replay, token budget
 ```
+
+### Run the Demo
+
+A self-contained demo lives in [`mvp/demo/`](mvp/demo/). Five agents
+(Researcher, Writer, Editor, Reviewer, Orchestrator) collaborate on a
+research brief through the membrane, exercising every public capability
+of the MVP — registration, three permeability tiers, trust, queries,
+subscriptions, broadcasts, and quorum-sensing swarms.
+
+```bash
+cd mvp
+pip install -r demo/requirements.txt
+python -m demo
+```
+
+The demo prints a richly-formatted terminal trace and emits five
+dark-themed SVGs into [`mvp/demo/output/`](mvp/demo/output/):
+
+| File | What it shows |
+|------|---------------|
+| [`architecture.svg`](mvp/demo/output/architecture.svg)     | Six-layer membrane between two agents, with arrows traversing each layer |
+| [`state_graph.svg`](mvp/demo/output/state_graph.svg)       | Bipartite agents ↔ exposed entries graph, edges colored by permeability tier |
+| [`swarm_timeline.svg`](mvp/demo/output/swarm_timeline.svg) | Quorum-sensing swarm lifecycle plotted against the event log sequence |
+| [`benchmark.svg`](mvp/demo/output/benchmark.svg)           | Baseline (point-to-point) vs. membrane on three metrics — small multiples |
+| [`scaling.svg`](mvp/demo/output/scaling.svg)               | Token cost vs. number of agents — baseline grows O(N²·F), membrane O(N·F) |
+
+#### Headline benchmark (3 agents, 5 facts each)
+
+|                  | baseline | membrane | reduction |
+|------------------|---------:|---------:|----------:|
+| messages         |       60 |       18 |   −70.0%  |
+| tokens           |    7,440 |    4,320 |   −41.9%  |
+| consensus steps  |        6 |        2 |   −66.7%  |
+
+The gap widens with scale: at 20 agents the token reduction reaches
+**−72.2%**.
 
 ## Position Paper
 
