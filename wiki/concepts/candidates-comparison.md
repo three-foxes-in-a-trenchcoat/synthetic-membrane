@@ -4,7 +4,7 @@ created: 2026-04-26
 updated: 2026-04-26
 type: comparison
 tags: [comparison, architecture, protocol, proposal, shared-state, swarm]
-sources: [prototypes/mcp-membrane.py, prototypes/blackboard-membrane.py, prototypes/protocol-spec.py, prototypes/swarm-membrane.py]
+sources: [protocol-spec.py, mcp-membrane.py, blackboard-membrane.py, swarm-membrane.py]
 confidence: medium
 ---
 
@@ -16,7 +16,7 @@ Four prototype approaches have been built and tested. This document compares the
 
 **What it is:** Each agent exposes state as permeable entries in a shared in-memory store. Three-tier permeability: public / trusted / private.
 
-**Prototype:** `prototypes/mcp-membrane.py`
+**Prototype:** `mcp-membrane.py`
 
 **Strengths:**
 - Leverages existing MCP ecosystem (Anthropic, 500+ servers, growing adoption)
@@ -37,7 +37,7 @@ Four prototype approaches have been built and tested. This document compares the
 
 **What it is:** SQLite-backed shared blackboard with event log. Agents contribute to sections, subscribe to changes, and resolve entries.
 
-**Prototype:** `prototypes/blackboard-membrane.py`
+**Prototype:** `blackboard-membrane.py`
 
 **Strengths:**
 - SQLite = durable, ACID, no server needed, single file
@@ -58,7 +58,7 @@ Four prototype approaches have been built and tested. This document compares the
 
 **What it is:** JSON message protocol with 8 message types. Works over any transport (WebSocket, HTTP/3, gRPC, NATS).
 
-**Prototype:** `prototypes/protocol-spec.py`
+**Prototype:** `protocol-spec.py`
 
 **Strengths:**
 - Transport-agnostic — works with any messaging layer
@@ -79,7 +79,7 @@ Four prototype approaches have been built and tested. This document compares the
 
 **What it is:** Agents emit chemical-like signals. When concentration crosses a threshold, swarm behavior activates automatically. Swarms dissolve when tasks complete.
 
-**Prototype:** `prototypes/swarm-membrane.py`
+**Prototype:** `swarm-membrane.py`
 
 **Strengths:**
 - True emergent coordination — no central orchestrator needed

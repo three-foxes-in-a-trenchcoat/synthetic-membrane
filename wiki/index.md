@@ -87,6 +87,13 @@
 - [[quorum-sensing-agents]] — Quorum sensing for dynamic swarm formation
 - [[structured-shared-memory]] — Graph-structured state beyond flat key-value stores
 
+## Prototypes
+
+- [`protocol-spec.py`](https://github.com/three-foxes-in-a-trenchcoat/synthetic-membrane/blob/master/protocol-spec.py) — Full protocol specification with field-level selectivity, CRDT store, subscription engine, and permeability gates
+- [`mcp-membrane.py`](https://github.com/three-foxes-in-a-trenchcoat/synthetic-membrane/blob/master/mcp-membrane.py) — MCP server implementation exposing the membrane as a set of MCP tools
+- [`swarm-membrane.py`](https://github.com/three-foxes-in-a-trenchcoat/synthetic-membrane/blob/master/swarm-membrane.py) — Quorum-sensing swarm formation and dissolution via the membrane medium
+- [`blackboard-membrane.py`](https://github.com/three-foxes-in-a-trenchcoat/synthetic-membrane/blob/master/blackboard-membrane.py) — Blackboard-pattern shared state with permeability-aware write gates
+
 ## Comparisons
 
 ## Queries
